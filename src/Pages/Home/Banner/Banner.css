@@ -1,0 +1,53 @@
+.slider-container img{
+    width: 100%;
+    overflow: hidden;
+    height: 700px;
+  }
+  .slider{
+      position: absolute;
+      top: -1%;
+  }
+  .banner{
+      position: relative;
+  }
+  
+  .banner-content{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 200;
+      transform: translate(-50%,-50%);
+  }
+  .banner-content h1{
+      color: #ffba00 !important;
+      line-height: 70px !important;
+  }
+  
+  .slider{
+      width: 100%;
+      overflow: hidden;
+  }
+  .button{
+    background: #ffba00;
+    border: 1px solid #ffba00;
+    display: inline-block;
+    color: #222222;
+    padding: 10px 50px;
+    border-radius: 60px;
+    transition: .5s;
+    margin-top: 20px;
+  }
+  .button:hover{
+      background-color: white;
+
+  }
+  @media screen and (max-width:640px) {
+      .banner-content{
+          position: absolute;
+          top: 50%;
+          left: 0%;
+          z-index: 200;
+          transform: translate(-0%,-50%);
+          width: 100%;
+      }
+  }

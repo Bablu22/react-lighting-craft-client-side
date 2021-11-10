@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Login from "./Authentication/Login/Login";
+import Register from "./Authentication/Register/Register";
+import AuthProvider from "./Context/AuthProvider/AuthProvider";
+import AllProducts from "./Pages/AllProducts/AllProducts/AllProducts";
+import Home from "./Pages/Home/Home/Home";
+import Purchase from "./Pages/PurchasePage/Purchase";
+import Footer from "./Shared/Footer/Footer";
+import NavigationTwo from "./Shared/Navigation/NavigationTwo";
+import PrivateRoute from './PrivateRoute/PrivateRoute'
+import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/home">
+              <Home></Home>
+            </Route>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/login">
+              <NavigationTwo />
+              <Login></Login>
+            </Route>
+            <Route path="/register">
+              <NavigationTwo />
+              <Register></Register>
+            </Route>
+            <Route path="/products">
+              <NavigationTwo />
+              <AllProducts></AllProducts>
+            </Route>
+            <PrivateRoute path="/dashboard">
+              <NavigationTwo />
+              <Dashboard></Dashboard>
+            </PrivateRoute>
+            <PrivateRoute path="/purchase/:id">
+              <NavigationTwo />
+              <Purchase />
+            </PrivateRoute>
+          </Switch>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
