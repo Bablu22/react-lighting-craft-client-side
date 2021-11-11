@@ -18,7 +18,8 @@ const Myorder = ({ order, handle }) => {
                     <p className="text-gray-600 sm:w-80 text-sm">Shipping Addres: {address}</p>
                     <p className="text-gray-600 sm:w-80  text-sm">Contact: {phone}</p>
                     <div>
-                        <span className="text-xs font-semibold inline-block py-1 px-4 mt-3 uppercase rounded-full text-pink-600 bg-red-200 mr-3">{status}</span>
+                        {status === 'Pending' ? <span className="text-xs font-semibold inline-block py-1 px-4 mt-3 uppercase rounded-full text-pink-600 bg-red-200 mr-3">{status}</span> :
+                            <span className="text-xs font-semibold inline-block py-1 px-4 mt-3 uppercase rounded-full text-black-600 bg-green-200 mr-3">{status}</span>}
                     </div>
                     <button
                         onClick={() => handle(_id)}

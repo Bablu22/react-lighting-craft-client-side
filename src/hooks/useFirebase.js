@@ -9,6 +9,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({})
     const [isLooding, setIsLooding] = useState(true)
     const [error, setError] = useState('')
+    const [admin, setAdmin] = useState(false)
 
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -19,6 +20,9 @@ const useFirebase = () => {
                 const destination = location?.state?.from || '/'
                 history.replace(destination)
                 setError('')
+
+                // save user in databse
+                saveUser(email, name, 'POST')
 
                 updateProfile(auth.currentUser, {
                     displayName: name
@@ -42,7 +46,6 @@ const useFirebase = () => {
             .then((userCredential) => {
                 const destination = location?.state?.from || '/'
                 history.replace(destination)
-
                 setError('')
             })
             .catch((error) => {
@@ -58,7 +61,8 @@ const useFirebase = () => {
                 const destination = location?.state?.from || '/'
                 history.replace(destination)
                 setError('')
-                console.log(result.user);
+                const user = result.user
+                saveUser(user.email, user.displayName, 'PUT')
             }).catch((error) => {
 
                 setError(error.message)
@@ -89,6 +93,24 @@ const useFirebase = () => {
             .finally(() => setIsLooding(false))
     }
 
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName }
+        fetch('http://localhost:5000/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+
     return {
         user,
         registeruser,
@@ -96,7 +118,8 @@ const useFirebase = () => {
         loginUser,
         isLooding,
         error,
-        googleLogIn
+        googleLogIn,
+        admin
     }
 }
 export default useFirebase

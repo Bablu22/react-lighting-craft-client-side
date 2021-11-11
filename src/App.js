@@ -13,6 +13,7 @@ import Footer from "./Shared/Footer/Footer";
 import NavigationTwo from "./Shared/Navigation/NavigationTwo";
 import PrivateRoute from './PrivateRoute/PrivateRoute'
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import NotFound from "./Pages/PageNotFound/NotFound";
 
 function App() {
   return (
@@ -46,6 +47,10 @@ function App() {
               <NavigationTwo />
               <Purchase />
             </PrivateRoute>
+            <Route path='*'>
+              <NavigationTwo />
+              <NotFound></NotFound>
+            </Route>
           </Switch>
           <Footer></Footer>
         </Router>

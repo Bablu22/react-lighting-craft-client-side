@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 import Myorder from './Myorder';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const MyOrders = () => {
     const { user } = useAuth()
@@ -9,13 +10,16 @@ const MyOrders = () => {
     const [isLooding, setIsLooding] = useState(true)
 
     useEffect(() => {
+
         fetch(`http://localhost:5000/orders/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data)
                 setIsLooding(false)
             })
-    }, [orders])
+    }, [])
+
+
 
     const handleDelete = id => {
         fetch(`http://localhost:5000/orders/${id}`, {
@@ -23,28 +27,30 @@ const MyOrders = () => {
         })
             .then(res => res.json())
             .then(data => {
+                if (data.deletedCount) {
 
-                Swal.fire({
-                    title: 'Do you want to delete the order?',
-                    confirmButtonText: 'Delete',
-                }).then((result) => {
-
-
-
-                    if (result.isConfirmed) {
-                        Swal.fire('Delete Sucessfull!', '', 'success')
-                        if (data.deletedCount) {
-                            const remaining = orders.filter(order => order._id != id)
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You wan't to delete this!",
+                        icon: 'warning',
+                        confirmButtonColor: '#eb4d4b',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            const remaining = orders.filter(i => i._id != id)
                             setOrders(remaining)
                         }
-                        else { return }
-                    }
-                })
+                    })
 
-
+                }
             })
-
     }
+
 
     return (
         <div className='container mx-auto'>

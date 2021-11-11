@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuAlt1Icon, XIcon } from '@heroicons/react/outline'
@@ -10,6 +10,16 @@ import User from '../../images/user.jpg'
 
 const Navigation = () => {
     const { user, logOut } = useAuth()
+
+    const [orders, setOrders] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/orders/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setOrders(data)
+            })
+    }, [orders])
 
     return (
         <div className="header">
@@ -41,7 +51,19 @@ const Navigation = () => {
                                             <NavLink to="/products">Products</NavLink>
                                             {user?.email && <NavLink to="/dashboard">Dashboard</NavLink>}
                                             <NavLink to="/contact">Contact</NavLink>
+                                            <NavLink to='/dashboard'>
+                                                <div class="font-sans block mt-4 lg:inline-block lg:mt-0 lg:ml-6 align-middle text-white relative">
+
+                                                    <svg class="flex-1 w-8 h-8 fill-current" viewbox="0 0 24 24">
+                                                        <path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
+                                                    </svg>
+                                                    <div class="absolute right-0 top-0 rounded-full bg-yellow-600 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">{orders.length}
+                                                    </div>
+
+                                                </div>
+                                            </NavLink>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -59,7 +81,7 @@ const Navigation = () => {
                                                     alt=""
                                                 /> : <img
                                                     className="h-8 w-8 rounded-full"
-                                                    src={User}
+                                                    src={`https://www.gravatar.com/avatar/EMAIL_MD5?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/${user.displayName}/128`}
                                                     alt=""
                                                 />
 
