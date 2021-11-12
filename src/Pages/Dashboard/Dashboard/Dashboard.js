@@ -9,6 +9,7 @@ import AdminRoute from '../../../Authentication/AdminRoute/AdminRoute';
 import useAuth from '../../../hooks/useAuth';
 import AddProduct from '../AddProduct/AddProduct';
 import AddReview from '../AddReview/AddReview';
+import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageOrders from '../ManageAllOrders/ManageOrders';
 import ManageProducts from '../ManageProduct/ManageProducts';
@@ -27,7 +28,7 @@ const Dashboard = () => {
                 <div className="flex md:flex-row-reverse flex-wrap">
 
                     <div className="w-full md:w-4/5 bg-gray-100">
-                        <div className="container bg-gray-100 pt-16 pb-32  mx-auto">
+                        <div className="container bg-gray-100 pt-16 pb-32 mt-48 md:mt-2  mx-auto">
                             <Switch>
                                 {!admin && <>
                                     <Route exact path={path}>
@@ -46,7 +47,10 @@ const Dashboard = () => {
 
                                 {admin && <>
                                     <AdminRoute exact path={path}>
-                                        <ManageOrders></ManageOrders>
+                                        <AdminDashboard />
+                                    </AdminRoute>
+                                    <AdminRoute path={`${path}/manageOrders`}>
+                                        <ManageOrders />
                                     </AdminRoute>
                                     <AdminRoute path={`${path}/makeAdmin`}>
                                         <MakeAdmin></MakeAdmin>
@@ -63,71 +67,74 @@ const Dashboard = () => {
                         </div>
                     </div>
 
-                    <div className="w-full  md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center   md:pt-8  md:left-0 absolute md:relative lg:relative ">
-                        <div className=" mx-auto lg:float-right lg:px-14">
-                            <ul className="list-reset flex flex-row md:flex-col text-center md:text-left">
+                    <div className="w-full  md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center pt-10  md:pt-8  md:left-0 absolute md:relative lg:relative ">
+                        <div className=" mx-auto lg:float-right lg:px-10">
+                            <ul className="list-reset flex flex-col md:flex-col text-center md:text-left">
                                 {
                                     !admin && <>
                                         <li className="mr-3 flex-1">
 
                                             <Link
                                                 className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                                to={`${url}`}>My orders</Link>
+                                                to={`${url}`}><i className="fas fa-luggage-cart mr-2"></i>My orders</Link>
                                         </li>
                                         <li className="mr-3 flex-1">
 
                                             <Link
                                                 className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                                to={`${url}/pay`}>Pay</Link>
+                                                to={`${url}/pay`}><i className="fab fa-paypal mr-2"></i>Pay</Link>
                                         </li>
                                         <li className="mr-3 flex-1">
 
                                             <Link
                                                 className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                                to={`${url}/addReview`}>Review</Link>
+                                                to={`${url}/addReview`}><i className="fas fa-comments mr-2"></i>Review</Link>
                                         </li>
                                     </>
                                 }
                                 {admin && <>
                                     <li className="mr-3 flex-1">
-
                                         <Link
                                             className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                            to={`${url}`}>Manage Orders</Link>
+                                            to={`${url}`}> <i className="fas fa-chart-line mr-2"></i>Dashboard</Link>
+                                    </li>
+                                    <li className="mr-3 flex-1">
+                                        <Link
+                                            className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
+                                            to={`${url}/manageOrders`}> <i className="fas fa-cart-arrow-down mr-2"></i>Manage Orders</Link>
                                     </li>
 
                                     <li className="mr-3 flex-1">
 
                                         <Link
                                             className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                            to={`${url}/makeAdmin`}>Make Admin</Link>
+                                            to={`${url}/makeAdmin`}><i className="fas fa-user-tie text-lg mr-2"></i>Make Admin</Link>
                                     </li>
                                     <li className="mr-3 flex-1">
 
                                         <Link
                                             className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                            to={`${url}/addProduct`}>Add Product</Link>
+                                            to={`${url}/addProduct`}><i className="fas fa-plus-square mr-2"></i>Add Product</Link>
                                     </li>
                                     <li className="mr-3 flex-1">
 
                                         <Link
                                             className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                            to={`${url}/manageProduct`}>Manage Products</Link>
+                                            to={`${url}/manageProduct`}> <i className="fas fa-paper-plane mr-2"></i>Manage Products</Link>
                                     </li>
 
                                 </>}
+                                <>
+                                    <li className="mr-3 flex-1">
 
+                                        <button
+                                            onClick={logOut}
+                                            className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
+                                        ><i className="fas fa-sign-out-alt mr-2"></i>Log out</button>
 
-                                <li className="mr-3 flex-1">
+                                    </li>
 
-                                    <button
-                                        onClick={logOut}
-                                        className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500 "
-                                    >Log out</button>
-
-                                </li>
-
-
+                                </>
                             </ul>
                         </div>
                     </div>

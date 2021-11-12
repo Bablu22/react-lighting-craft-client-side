@@ -3,6 +3,7 @@ import Logo from '../../images/logo.png'
 import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
 import { FaPhoneAlt } from "@react-icons/all-files/fa/FaPhoneAlt";
 import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
+import './Footer.css'
 
 const Footer = () => {
     return (

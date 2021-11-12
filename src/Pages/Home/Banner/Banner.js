@@ -39,7 +39,7 @@ const Banner = () => {
                                 <div data-aos="fade-up">
                                     <h1 className="sm:text-6xl leading-snug text-3xl text-yellow-500 font-light mb-2">HOME INTERIORS & DECORATIVE <br /> LIGHTS
                                     </h1>
-                                    <p className='text-white text-2xl font-light py-3'>Get Upto 50% Off Each At Store Only</p>
+                                    <p className='text-white text-3xl font-light py-3 font-sans'>Get Upto 50% Off Each At Store Only</p>
                                     <button className="button">Shop Now</button>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@ const Banner = () => {
                             <div className="banner-content w-full">
                                 <div data-aos="fade-up">
                                     <h1 className="sm:text-6xl mb-2 text-3xl font-light">INTERIORS & CEILING DECORATIVE <br /> LIGHTS</h1>
-                                    <p className='text-white text-2xl font-light py-3'>Discover Best Of Stylist Cataloug, 2021</p>
+                                    <p className='text-white text-3xl font-light py-3 font-sans '>Discover Best Of Stylist Cataloug, 2021</p>
                                     <button className="button">Shop Now</button>
                                 </div>
                             </div>

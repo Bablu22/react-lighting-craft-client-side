@@ -8,7 +8,7 @@ const ProductUpdateModal = ({ product, modal, openModal, closeModal }) => {
     const cancelButtonRef = useRef(null)
 
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({ mode: "onChange" });
+    const { register, handleSubmit, reset } = useForm({ mode: "onChange" });
     const onSubmit = data => {
 
         fetch(`http://localhost:5000/products/${product._id}`, {

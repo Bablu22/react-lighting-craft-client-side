@@ -1,0 +1,21 @@
+.footer .icon{
+    height: 30px;
+    width: 30px;
+    border: 1px solid white;
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: .5s;
+    cursor: pointer;
+}
+.footer .icon:hover{
+    background-color: #f3692ee1;
+}
+.footer-text a{
+    color: rgb(151, 146, 146);
+    transition: .5s;
+}
+.footer-text a:hover{
+    color: #f15f22;
+}

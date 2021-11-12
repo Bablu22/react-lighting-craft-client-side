@@ -14,6 +14,7 @@ import NavigationTwo from "./Shared/Navigation/NavigationTwo";
 import PrivateRoute from './PrivateRoute/PrivateRoute'
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import NotFound from "./Pages/PageNotFound/NotFound";
+import Contact from "./Pages/Contact/Contact";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
             <Route path="/products">
               <NavigationTwo />
               <AllProducts></AllProducts>
+            </Route>
+            <Route path="/contact">
+              <NavigationTwo />
+              <Contact />
             </Route>
             <PrivateRoute path="/dashboard">
               <NavigationTwo />

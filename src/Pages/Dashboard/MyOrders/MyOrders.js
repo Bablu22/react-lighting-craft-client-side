@@ -42,7 +42,7 @@ const MyOrders = () => {
                                 'Your file has been deleted.',
                                 'success'
                             )
-                            const remaining = orders.filter(i => i._id != id)
+                            const remaining = orders.filter(i => i._id !== id)
                             setOrders(remaining)
                         }
                     })
