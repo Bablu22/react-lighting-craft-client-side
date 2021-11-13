@@ -19,7 +19,7 @@ const Navigation = () => {
             .then(data => {
                 setOrders(data)
             })
-    }, [orders])
+    }, [user.email])
 
     return (
         <div className="header">

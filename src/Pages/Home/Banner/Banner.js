@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 const Banner = () => {
 
     const settings = {
@@ -40,7 +41,9 @@ const Banner = () => {
                                     <h1 className="sm:text-6xl leading-snug text-3xl text-yellow-500 font-light mb-2">HOME INTERIORS & DECORATIVE <br /> LIGHTS
                                     </h1>
                                     <p className='text-white text-3xl font-light py-3 font-sans'>Get Upto 50% Off Each At Store Only</p>
-                                    <button className="button">Shop Now</button>
+                                    <Link to='/products'>
+                                        <button className="button">Shop Now</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +56,9 @@ const Banner = () => {
                                 <div data-aos="fade-up">
                                     <h1 className="sm:text-6xl mb-2 text-3xl font-light">INTERIORS & CEILING DECORATIVE <br /> LIGHTS</h1>
                                     <p className='text-white text-3xl font-light py-3 font-sans '>Discover Best Of Stylist Cataloug, 2021</p>
-                                    <button className="button">Shop Now</button>
+                                    <Link to='/products'>
+                                        <button className="button">Shop Now</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

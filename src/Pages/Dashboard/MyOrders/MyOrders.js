@@ -22,7 +22,7 @@ const MyOrders = () => {
                 setOrders(data)
                 setIsLooding(false)
             })
-    }, [])
+    }, [token, user.email])
 
 
 

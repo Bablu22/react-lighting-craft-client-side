@@ -45,7 +45,7 @@ const useFirebase = () => {
         setIsLooding(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const destination = location?.state?.from || '/'
+                const destination = location?.state?.from || '/dashboard'
                 history.replace(destination)
                 setError('')
             })
@@ -59,7 +59,7 @@ const useFirebase = () => {
         setIsLooding(true)
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                const destination = location?.state?.from || '/'
+                const destination = location?.state?.from || '/dashboard'
                 history.replace(destination)
                 setError('')
                 const user = result.user
@@ -86,7 +86,7 @@ const useFirebase = () => {
             }
             setIsLooding(false)
         });
-    }, [])
+    }, [auth])
 
     const logOut = () => {
         setIsLooding(true)

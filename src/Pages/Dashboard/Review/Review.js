@@ -53,7 +53,7 @@ const Review = () => {
     return (
         <div className='bg-gray-50'>
             <div className='container mx-auto'>
-                <h2 className='text-center text-yellow-500 italic text-4xl font-bold py-5'>Customers Reviews</h2>
+                <h2 className='text-center text-yellow-500 italic text-4xl font-bold py-5 font-sans'>Customers Reviews</h2>
                 <div className='lg:p-5 px-10'>
                     <Slider {...settings}>
                         {

@@ -4,6 +4,7 @@ import Review from '../../Dashboard/Review/Review';
 import Banner from '../Banner/Banner';
 import Offer from '../OfferSection/Offer';
 import Products from '../Products/Products';
+import Subscribe from '../Subscribe/Subscribe';
 import './Home.css'
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
                 <Products></Products>
                 <Offer />
                 <Review></Review>
+                <Subscribe></Subscribe>
             </div>
         </div>
     );

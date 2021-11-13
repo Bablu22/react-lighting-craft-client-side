@@ -16,7 +16,7 @@ const Purchase = () => {
         fetch(`https://afternoon-earth-09168.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
-    }, [])
+    }, [id])
 
     return (
         <div className='container mx-auto'>

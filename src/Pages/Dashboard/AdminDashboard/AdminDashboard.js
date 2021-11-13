@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chart from './Chart';
 
 const AdminDashboard = () => {
-
+    const [reviews, setReviews] = useState([])
     const [orders, setOrders] = useState([])
     const [users, setUsers] = useState([])
     const [products, setProducts] = useState([])
@@ -25,6 +25,11 @@ const AdminDashboard = () => {
             .then(data => setProducts(data))
     }, [])
 
+    useEffect(() => {
+        fetch('https://afternoon-earth-09168.herokuapp.com/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [])
 
 
 
@@ -90,7 +95,7 @@ const AdminDashboard = () => {
                                 <div className="rounded p-3 bg-red-400"><i className="fas fa-frown mr-2 fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div className="flex-1 text-right md:text-center">
-                                <h5 className="font-bold uppercase text-gray-500">Total Pending</h5>
+                                <h5 className="font-bold uppercase text-gray-500">Total Pending Products</h5>
                                 <h3 className="font-bold text-3xl">{pending.length}</h3>
                             </div>
                         </div>
@@ -103,8 +108,21 @@ const AdminDashboard = () => {
                                 <div className="rounded p-3 bg-green-600"><i className="fas fa-smile mr-2 fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div className="flex-1 text-right md:text-center">
-                                <h5 className="font-bold uppercase text-gray-500">Total Approved</h5>
+                                <h5 className="font-bold uppercase text-gray-500">Total Approved Products</h5>
                                 <h3 className="font-bold text-3xl">{approved.length}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full ">
+                    <div className="bg-white border rounded shadow p-2">
+                        <div className="flex flex-row items-center">
+                            <div className="flex-shrink pr-4">
+                                <div className="rounded p-3 bg-pink-500"><i className="fas fa-comments mr-2 fa-2x fa-fw fa-inverse"></i></div>
+                            </div>
+                            <div className="flex-1 text-right md:text-center">
+                                <h5 className="font-bold uppercase text-gray-500">Total Reviews</h5>
+                                <h3 className="font-bold text-3xl">{reviews.length}</h3>
                             </div>
                         </div>
                     </div>
