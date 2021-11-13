@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import initializeFirebase from "../FIrebase/firebase.init"
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, getIdToken } from "firebase/auth";
 
 
 initializeFirebase()
@@ -10,6 +10,7 @@ const useFirebase = () => {
     const [isLooding, setIsLooding] = useState(true)
     const [error, setError] = useState('')
     const [admin, setAdmin] = useState(false)
+    const [token, setToken] = useState('');
 
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -76,6 +77,10 @@ const useFirebase = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
+                getIdToken(user)
+                    .then(idToken => {
+                        setToken(idToken);
+                    })
             } else {
                 setUser({})
             }
@@ -95,7 +100,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName }
-        fetch('http://localhost:5000/users', {
+        fetch('https://afternoon-earth-09168.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -106,7 +111,7 @@ const useFirebase = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://afternoon-earth-09168.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -119,7 +124,8 @@ const useFirebase = () => {
         isLooding,
         error,
         googleLogIn,
-        admin
+        admin,
+        token
     }
 }
 export default useFirebase

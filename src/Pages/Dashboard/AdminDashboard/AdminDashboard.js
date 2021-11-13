@@ -7,20 +7,20 @@ const AdminDashboard = () => {
     const [users, setUsers] = useState([])
     const [products, setProducts] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://afternoon-earth-09168.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [])
     const pending = orders.filter(order => order.status === 'Pending')
     const approved = orders.filter(order => order.status === 'approved')
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://afternoon-earth-09168.herokuapp.com/users')
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
     const mapAdmin = users.filter(user => user.role)
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://afternoon-earth-09168.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])

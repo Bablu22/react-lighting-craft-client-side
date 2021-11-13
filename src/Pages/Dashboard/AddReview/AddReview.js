@@ -22,7 +22,7 @@ const AddReview = () => {
         const newReview = { name, img, ratingStar, description }
         console.log(newReview);
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://afternoon-earth-09168.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

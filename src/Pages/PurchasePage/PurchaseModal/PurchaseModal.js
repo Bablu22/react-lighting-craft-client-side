@@ -21,7 +21,7 @@ const PurchaseModal = ({ product, modal, openModal, closeModal }) => {
         data.itemName = name
         data.itemImg = img
         data.status = 'Pending'
-        fetch('http://localhost:5000/orders', {
+        fetch('https://afternoon-earth-09168.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -9,7 +9,7 @@ const AllProducts = () => {
     const [isLooding, setIsLooding] = useState(true)
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://afternoon-earth-09168.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data)

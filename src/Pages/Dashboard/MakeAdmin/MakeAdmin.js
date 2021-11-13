@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
-
+import useAuth from '../../../hooks/useAuth'
 const MakeAdmin = () => {
     const [email, setEmail] = useState('')
-
+    const { token } = useAuth()
     const handleOnBlur = e => {
         setEmail(e.target.value)
         e.target.value = ''
@@ -12,9 +12,10 @@ const MakeAdmin = () => {
     const handleSubmit = e => {
         e.preventDefault()
         const user = { email }
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://afternoon-earth-09168.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
+                'authorization': `Bearer ${token}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)

@@ -8,10 +8,15 @@ const MyOrders = () => {
     const { user } = useAuth()
     const [orders, setOrders] = useState([])
     const [isLooding, setIsLooding] = useState(true)
+    const { token } = useAuth()
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/orders/${user.email}`)
+        fetch(`https://afternoon-earth-09168.herokuapp.com/orders/${user.email}`, {
+            headers: {
+                'authorization': `Bearer ${token}`,
+            },
+        })
             .then(res => res.json())
             .then(data => {
                 setOrders(data)
@@ -22,7 +27,7 @@ const MyOrders = () => {
 
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://afternoon-earth-09168.herokuapp.com/orders/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

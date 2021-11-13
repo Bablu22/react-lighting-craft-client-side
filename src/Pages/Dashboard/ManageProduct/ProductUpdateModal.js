@@ -11,7 +11,7 @@ const ProductUpdateModal = ({ product, modal, openModal, closeModal }) => {
     const { register, handleSubmit, reset } = useForm({ mode: "onChange" });
     const onSubmit = data => {
 
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://afternoon-earth-09168.herokuapp.com/products/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
